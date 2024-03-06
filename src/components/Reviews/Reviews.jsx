@@ -8,7 +8,7 @@ const Reviews = () => {
   const [expandedReviews, setExpandedReviews] = useState([]);
   const { movieId } = useParams();
   useEffect(() => {
-    const fn = async () => {
+    const fetchData = async () => {
       try {
         const result = await fetchReviewsByMovieId(movieId);
         setReviews(result);
@@ -17,7 +17,7 @@ const Reviews = () => {
       } finally {
       }
     };
-    fn();
+    fetchData();
   }, [movieId]);
 
   const handleReadMore = author => {
@@ -50,7 +50,7 @@ const Reviews = () => {
           );
         })
       ) : (
-        <p>There are no reviews so far ...</p>
+        <li>There are no reviews so far ...</li>
       )}
     </ul>
   );

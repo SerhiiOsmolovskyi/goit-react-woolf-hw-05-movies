@@ -7,7 +7,7 @@ import styles from './Home.module.css';
 const Home = () => {
   const [movies, setMovies] = useState(null);
   useEffect(() => {
-    const fn = async () => {
+    const fecthTrendingMoviesData = async () => {
       try {
         const result = await fecthTrendingMovies();
         setMovies(result);
@@ -16,7 +16,7 @@ const Home = () => {
       } finally {
       }
     };
-    fn();
+    fecthTrendingMoviesData();
   }, []);
   return (
     <div className={styles.homeContainer}>

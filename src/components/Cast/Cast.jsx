@@ -7,7 +7,7 @@ const Cast = () => {
   const [cast, setCast] = useState(null);
   const { movieId } = useParams();
   useEffect(() => {
-    const fn = async () => {
+    const fetchCastData = async () => {
       try {
         const result = await fetchCreditsByMovieId(movieId);
         setCast(result);
@@ -16,7 +16,7 @@ const Cast = () => {
       } finally {
       }
     };
-    fn();
+    fetchCastData();
   }, [movieId]);
   return (
     <ul className={styles['cast-container']}>
@@ -36,7 +36,7 @@ const Cast = () => {
           </li>
         ))
       ) : (
-        <p>Not found</p>
+        <li>Not found</li>
       )}
     </ul>
   );

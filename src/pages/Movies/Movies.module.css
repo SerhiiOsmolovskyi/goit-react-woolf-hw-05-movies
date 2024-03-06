@@ -11,7 +11,7 @@
   min-height: 100vh;
 }
 
-.searchForm {
+/* .searchForm {
   width: 100%;
   max-width: 400px;
   display: flex;
@@ -42,7 +42,7 @@
 
 .searchButton:hover {
   background-color: #2980b9;
-}
+} */
 
 .movieList {
   width: calc(25% - 12px);

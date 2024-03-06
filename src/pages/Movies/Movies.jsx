@@ -4,21 +4,23 @@ import { useState } from 'react';
 import MovieList from 'components/MovieList/MovieList';
 import { useSearchParams } from 'react-router-dom';
 import styles from './Movies.module.css';
+import SearchForm from 'components/SearchForm/SearchFrom';
 
 const Movies = () => {
   const [movies, setMovies] = useState(null);
-  const [searchParams, setSearchParams] = useSearchParams();
+  // const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const query = searchParams.get('query') || '';
 
-  const handleSubmit = event => {
-    event.preventDefault();
-    const query = event.target.elements.searchQuery.value.trim();
-    if (!query) return;
-    setSearchParams({ query });
-  };
+  // const handleSubmit = event => {
+  //   event.preventDefault();
+  //   const query = event.target.elements.searchQuery.value.trim();
+  //   if (!query) return;
+  //   setSearchParams({ query });
+  // };
 
   useEffect(() => {
-    const fn = async () => {
+    const fetchMoviesByQueryData = async () => {
       if (!query) return;
       try {
         const result = await fetchMoviesByQuery(query);
@@ -27,11 +29,11 @@ const Movies = () => {
         console.error('Error fetching movies:', error);
       }
     };
-    fn();
+    fetchMoviesByQueryData();
   }, [query]);
   return (
     <div className={styles.moviesСontainer}>
-      <form onSubmit={handleSubmit} className={styles.searchForm}>
+      {/* <form onSubmit={handleSubmit} className={styles.searchForm}>
         <label htmlFor="searchQuery">
           <input
             type="text"
@@ -45,7 +47,8 @@ const Movies = () => {
         <button type="submit" className={styles.searchButton}>
           Search
         </button>
-      </form>
+      </form> */}
+      <SearchForm />
       {movies && <MovieList movies={movies} />}
     </div>
   );
